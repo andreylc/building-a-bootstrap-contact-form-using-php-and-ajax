@@ -41,7 +41,7 @@ $("#contactForm").validator().on("submit", function (event) {
          if(valid){
              var msgClasses = "text-success";
          } else {
-             var msgClasses = "text-danger";
+             var msgClasses = "text-danger hidden";
          }
          $("#msgSubmit").removeClass().addClass(msgClasses).text(msg);
      }
