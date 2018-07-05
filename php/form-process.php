@@ -1,50 +1,41 @@
 <?php
-
 $errorMSG = "";
-
 // NAME
 if (empty($_POST["name"])) {
-    $errorMSG = "Name is required ";
+    $name = "не заполнено";
 } else {
     $name = $_POST["name"];
 }
-
 // EMAIL
 if (empty($_POST["email"])) {
-    $errorMSG .= "Email is required ";
+    $errorMSG .= "заполните поле";
 } else {
     $email = $_POST["email"];
 }
-
 // MESSAGE
 if (empty($_POST["message"])) {
-    $errorMSG .= "Message is required ";
+    $errorMSG .= "заполните поле";
 } else {
     $message = $_POST["message"];
 }
-
-
-$EmailTo = "emailaddress@test.com";
-$Subject = "New Message Received";
-
+$EmailTo = "a.tyapugin@demis.ru";
+$Subject = "Новое сообщение с сайта ".$_SERVER['SERVER_NAME'];
 // prepare email body text
-$Body = "";
-$Body .= "Name: ";
+$Body = "Клиент заполнил форму \"Обратная связь\" на странице 'Контакты' \n\r\r";
+$Body .= "Имя: ";
 $Body .= $name;
 $Body .= "\n";
-$Body .= "Email: ";
+$Body .= "E-mail: ";
 $Body .= $email;
 $Body .= "\n";
-$Body .= "Message: ";
+$Body .= "Сообщение: ";
 $Body .= $message;
 $Body .= "\n";
-
 // send email
-$success = mail($EmailTo, $Subject, $Body, "From:".$email);
-
+$success = mail($EmailTo, $Subject, $Body,"Content-Type: text/plain; charset='UTF-8'");
 // redirect to success page
 if ($success && $errorMSG == ""){
-   echo "success";
+    echo "success";
 }else{
     if($errorMSG == ""){
         echo "Something went wrong :(";
@@ -52,5 +43,4 @@ if ($success && $errorMSG == ""){
         echo $errorMSG;
     }
 }
-
 ?>
